@@ -13,12 +13,12 @@ st.set_page_config(
 # =========================================================================================================== Load Pipelines
 @st.cache_resource(show_spinner='Model loading')  # A decorator for caching
 def load_rf_pipeline():
-    pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\random_forest_model.pk1')
+    pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\random_forest_model.pk1')
     return pipeline
 
 @st.cache_resource(show_spinner='Model loading')
 def load_svc_pipeline():
-    pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\svc_model.pkl')
+    pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\svc_model.pkl')
     return pipeline
 
 # =========================================================================================================== Function
@@ -34,7 +34,7 @@ def select_model():
     else:
         pipeline = load_svc_pipeline()
     
-    encoder = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\encoder.joblib')   
+    encoder = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\encoder.joblib')   
     return pipeline, encoder
 
 # =========================================================================================================== For Session State
