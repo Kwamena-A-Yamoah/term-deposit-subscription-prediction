@@ -17,12 +17,12 @@ st.set_page_config(
 # Create function to load models from the project
 @st.cache_resource(show_spinner='Model loading')    # A decorator for loading
 def load_rf_pipeline():
-    pipeline = joblib.load('./models/random_forest_model.pk1')
+    pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\random_forest_model.pk1')
     return pipeline
 
 @st.cache_resource(show_spinner='Model loading')
 def load_svc_pipeline():
-    pipeline = joblib.load('./models\svc_model.pkl')
+    pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\svc_model.pkl')
     return pipeline
 
 # =========================================================================================================== Function
@@ -42,7 +42,7 @@ def select_model():
         pipeline = load_svc_pipeline()
     
     # This is the encoder used to transform "y_train" and "y_test"
-    encoder = joblib.load('./models/encoder.joblib')   
+    encoder = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\encoder.joblib')   
     return pipeline, encoder
 
 # =========================================================================================================== For Session State
@@ -57,37 +57,32 @@ if 'probability' not in st.session_state:
 
 # A function to process the input data and make prediction
 def make_prediction(pipeline, encoder):
-    gender = st.session_state['gender']
-    SeniorCitizen = st.session_state['senior_citizen']
-    Partner = st.session_state['partner']
-    Dependents = st.session_state['dependants']
-    tenure = st.session_state['tenure']
-    PhoneService = st.session_state['phone_service']
-    MultipleLines = st.session_state['multiple_lines']
-    InternetService = st.session_state['internet_service']
-    OnlineSecurity = st.session_state['online_security']
-    OnlineBackup = st.session_state['online_backup']
-    DeviceProtection = st.session_state['device_protection']
-    TechSupport = st.session_state['tech_support']
-    StreamingTV = st.session_state['tv_stream']
-    StreamingMovies = st.session_state['stream_movies']
-    Contract = st.session_state['contract']
-    PaperlessBilling = st.session_state['paperless_billing']
-    PaymentMethod = st.session_state['payment_method']
-    MonthlyCharges = st.session_state['monthly_charges']
-    TotalCharges = st.session_state['total_charges']
+    age = st.session_state['age']
+    job = st.session_state['job']
+    marital = st.session_state['marital']
+    education = st.session_state['education']
+    default = st.session_state['default']
+    balance = st.session_state['balance']
+    housing = st.session_state['housing']
+    loan = st.session_state['loan']
+    contact = st.session_state['contact']
+    day = st.session_state['day']
+    month = st.session_state['month']
+    duration = st.session_state['duration']
+    campaign = st.session_state['campaign']
+    pdays = st.session_state['pdays']
+    previous = st.session_state['previous']
+    poutcome = st.session_state['poutcome']
+    y = st.session_state['y']
     
-    column = ['gender', 'SeniorCitizen', 'Partner','Dependents','tenure',
-              'PhoneService', 'MultipleLines', 'InternetService',
-              'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
-              'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
-              'PaymentMethod', 'MonthlyCharges', 'TotalCharges']
+    column = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing',
+              'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays',
+              'previous', 'poutcome', 'y']
     
-    data = [[gender, SeniorCitizen, Partner, Dependents,
-             tenure, PhoneService, MultipleLines, InternetService,
-             OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport,
-             StreamingTV, StreamingMovies, Contract, PaperlessBilling,
-             PaymentMethod, MonthlyCharges, TotalCharges]]
+    data = [[age, job, marital, education,
+             default, balance, housing, loan,
+             contact, day, month, duration,
+             campaign, pdays, previous, poutcome, y]]
     
     # create a dataframe
     df = pd.DataFrame(data, columns= column)
