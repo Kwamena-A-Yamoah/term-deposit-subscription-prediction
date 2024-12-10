@@ -130,6 +130,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Folder
+streamlit\pages\2_data.py
+
 # Spyder project settings
 .spyderproject
 .spyproject

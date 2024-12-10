@@ -1,0 +1,4 @@
+age,job,marital,education,default,balance,housing,loan,contact,day,month,duration,campaign,pdays,previous,poutcome,y,Prediction time,Model used
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,Yes,2024-12-10,Random Forest
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,Random Forest
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,SVC

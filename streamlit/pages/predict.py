@@ -1,21 +1,17 @@
 import streamlit as st
 import joblib
-import pandas as pd 
+import pandas as pd
 import os
 import datetime
 
-
 # =========================================================================================================== Page Setup
-
 st.set_page_config(
-    page_title= 'Predict',
-    layout= 'wide'
+    page_title='Predict',
+    layout='wide'
 )
 
 # =========================================================================================================== Load Pipelines
-
-# Create function to load models from the project
-@st.cache_resource(show_spinner='Model loading')    # A decorator for loading
+@st.cache_resource(show_spinner='Model loading')  # A decorator for caching
 def load_rf_pipeline():
     pipeline = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\random_forest_model.pk1')
     return pipeline
@@ -26,13 +22,10 @@ def load_svc_pipeline():
     return pipeline
 
 # =========================================================================================================== Function
-
-# A function to define a 'Selexbox' for the models, load the select model and encoder
 def select_model():
     col1, col2 = st.columns(2)
-    
     with col1:
-        st.selectbox('Select a Model', options= ['Random Forest', 'SVC'], key= 'selected_model')
+        st.selectbox('Select a Model', options=['Random Forest', 'SVC'], key='selected_model')
     with col2:
         pass
     
@@ -41,21 +34,16 @@ def select_model():
     else:
         pipeline = load_svc_pipeline()
     
-    # This is the encoder used to transform "y_train" and "y_test"
     encoder = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\models\encoder.joblib')   
     return pipeline, encoder
 
 # =========================================================================================================== For Session State
-
-# This is for the prediction and probabiliy in the session state when nothing has been run
 if 'predictions' not in st.session_state:
     st.session_state.predictions = None
 if 'probability' not in st.session_state:
     st.session_state.probability = None
-    
-# =========================================================================================================== Function
 
-# A function to process the input data and make prediction
+# =========================================================================================================== Function
 def make_prediction(pipeline, encoder):
     age = st.session_state['age']
     job = st.session_state['job']
@@ -73,110 +61,65 @@ def make_prediction(pipeline, encoder):
     pdays = st.session_state['pdays']
     previous = st.session_state['previous']
     poutcome = st.session_state['poutcome']
-    y = st.session_state['y']
     
     column = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing',
               'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays',
-              'previous', 'poutcome', 'y']
+              'previous', 'poutcome']
     
     data = [[age, job, marital, education,
              default, balance, housing, loan,
              contact, day, month, duration,
-             campaign, pdays, previous, poutcome, y]]
+             campaign, pdays, previous, poutcome]]
     
-    # create a dataframe
-    df = pd.DataFrame(data, columns= column)
-    
-    # Create the 'Prediction time' and 'Model used' columns
+    df = pd.DataFrame(data, columns=column)
     df['Prediction time'] = datetime.date.today()
     df['Model used'] = st.session_state['selected_model']
+    df.to_csv('history_data\history.csv', mode='a', header=not os.path.exists('history_data\history.csv'), index=False)
     
-    # Save prediction info into a history, history.csv
-    df.to_csv('./data/history.csv', mode='a', 
-              header=not os.path.exists('./data/history.csv'), index=False)
-    
-    # Make prediction
     pred = pipeline.predict(df)
     pred = int(pred[0])
     prediction = encoder.inverse_transform([pred])
     
-    # Get probabilities
     probability = pipeline.predict_proba(df)
     probability = probability[0]
     
-    st.write("Debug: Final prediction:", prediction[0])
-    st.write("Debug: Final probability:", probability)
-  
     st.session_state['predictions'] = prediction[0]
     st.session_state['probability'] = probability
     
     return prediction[0], probability
-    print(prediction, probability)
 
 # =========================================================================================================== Function (display)
-
-# Write the Display form function
 def display_form():
-    
-    # Display the model options
     pipeline, encoder = select_model()
-    
-    # The display form
     with st.form('input-feature'):
-        col1, col2, col3 =st.columns(3)
-    
+        col1, col2, col3 = st.columns(3)
+        
         with col1:
-            st.write("#####")
-            st.selectbox('Gender', ['Male', 'Female'], key='gender')
-            st.selectbox('Type of Internet service', ['DSL', 'Fiber optic', 'No'], key='internet_service')
-            st.selectbox('Type of Contract', ['Month-to-month', 'One year', 'Two year'], key='contract')
-            st.selectbox('Payment method', ['Electronic check', 'Mailed check', 'Bank transfer (automatic)',
-                                            'Credit card (automatic)'], key='payment_method')
-            st.slider('Tenure', min_value=0, max_value=72, key='tenure')
-            st.number_input('Monthly charges', min_value=0, max_value=120, key='monthly_charges')
-            st.number_input('Total charges', min_value=0.00, max_value=8684.80, key='total_charges')
+            st.number_input('Age', min_value=0, max_value=120, key='age')
+            st.selectbox('Job', ['Admin.', 'Technician', 'Entrepreneur', 'Management', 'Blue-collar',
+                                 'Unknown', 'Retired', 'Services', 'Self-employed', 'Unemployed', 'Student'], key='job')
+            st.selectbox('Marital Status', ['Married', 'Single', 'Divorced'], key='marital')
+            st.selectbox('Education Level', ['Primary', 'Secondary', 'Tertiary', 'Unknown'], key='education')
+            st.selectbox('Default Credit', ['Yes', 'No'], key='default')
+            st.number_input('Balance', value=0.0, key='balance')
+        
         with col2:
-            st.write("Please input the customer's details")
-            st.selectbox('Senior Citizen', ['Yes','No'], key='senior_citizen')
-            st.selectbox('Partner', ['Yes','No'], key='partner')
-            st.selectbox('Dependants', ['Yes','No'], key='dependants')
-            st.selectbox('Phone service', ['Yes','No'], key='phone_service')
-            st.selectbox('Multiple lines', ['Yes','No'], key='multiple_lines')
-            st.selectbox('Online security', ['Yes','No'], key='online_security')
-            st.selectbox('Online backup', ['Yes','No'], key='online_backup') 
+            st.selectbox('Housing Loan', ['Yes', 'No'], key='housing')
+            st.selectbox('Personal Loan', ['Yes', 'No'], key='loan')
+            st.selectbox('Contact Type', ['Telephone', 'Cellular', 'Unknown'], key='contact')
+            st.number_input('Day of Month Contacted', min_value=1, max_value=31, key='day')
+            st.selectbox('Month', ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], key='month')
+            st.number_input('Call Duration (seconds)', value=0, key='duration')
+        
         with col3:
-            st.write("#####")
-            st.selectbox('Device protection', ['Yes','No'], key='device_protection')
-            st.selectbox('Tech support', ['Yes','No'], key='tech_support')
-            st.selectbox('TV Stream', ['Yes','No'], key='tv_stream')
-            st.selectbox('Stream Movies', ['Yes','No'], key='stream_movies')
-            st.selectbox('Paperless billing', ['Yes','No'], key='paperless_billing')
-            
-        st.form_submit_button('Make Prediction', on_click=make_prediction,
-                              kwargs= dict(pipeline=pipeline, encoder=encoder))
+            st.number_input('Campaign Contacts', min_value=0, key='campaign')
+            st.number_input('Days since Previous Campaign Contact', min_value=-1, key='pdays')
+            st.number_input('Number of Previous Contacts', min_value=0, key='previous')
+            st.selectbox('Previous Outcome', ['Success', 'Failure', 'Other', 'Unknown'], key='poutcome')
+        
+        st.form_submit_button('Make Prediction', on_click=make_prediction, kwargs=dict(pipeline=pipeline, encoder=encoder))
 
-# ========================================================================= Main Page
-
-# if __name__== "__main__":
-#     st.title('Make Prediction')
-#     display_form()
-    
-#     prediction = st.session_state['predictions']
-#     probability = st.session_state['probability']
-    
-#     if not prediction:
-#         st.markdown('### Predictions will show here')
-#     elif prediction == 'true':
-#         probability_of_stay = probability[1] * 100
-#         st.markdown(f'### The employee will stay with a probability of {round(probability_of_stay, 1)}%')
-#     elif prediction == 'false':
-#         probability_of_leave = probability[0] * 100
-#         st.markdown(f'### The employee will leave with a probability of {round(probability_of_leave, 1)}%')
-#     else:
-#         st.markdown(f'### Unexpected prediction value: {prediction}')
-    
-# ========================================================================= Main Page
-
+# =========================================================================================================== Main Page
 if __name__ == "__main__":
     st.title('Make Prediction')
     display_form()
@@ -184,11 +127,11 @@ if __name__ == "__main__":
     prediction = st.session_state['predictions']
     probability = st.session_state['probability']
     
-    if prediction is None:  # Check if prediction is None
+    if prediction is None:
         st.markdown('### Predictions will show here')
-    elif prediction == 'True':  # Assuming the encoder returns 'Yes' for a positive prediction
-        probability_of_stay = probability[1] * 100
-        st.markdown(f'### The customer is likely to leave with a probability of {round(probability_of_stay, 1)}%')
+    elif prediction == 'Yes':
+        probability_of_yes = probability[1] * 100
+        st.markdown(f'### The customer is likely to subscribe with a probability of {round(probability_of_yes, 1)}%')
     else:
-        probability_of_leave = probability[0] * 100
-        st.markdown(f'### The customer is likely to stay with a probability of {round(probability_of_leave, 1)}%')
+        probability_of_no = probability[0] * 100
+        st.markdown(f'### The customer is unlikely to subscribe with a probability of {round(probability_of_no, 1)}%')
