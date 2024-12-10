@@ -7,3 +7,42 @@ age,job,marital,education,default,balance,housing,loan,contact,day,month,duratio
 0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,May,0,0,-1,0,Success,2024-12-10,Random Forest
 0,Admin.,Married,Secondary,No,0.0,Yes,Yes,Telephone,1,May,0,0,-1,0,Success,2024-12-10,Random Forest
 0,Admin.,Married,Secondary,No,0.0,Yes,No,Unknown,1,May,0,2,2,0,Other,2024-12-10,Random Forest
+54,Retired,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,600,1,-1,2,Success,2024-12-10,Random Forest
+54,Retired,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Sep,800,1,-1,2,Success,2024-12-10,Random Forest
+25,Retired,Married,Primary,No,0.0,No,No,Telephone,1,Sep,800,1,-1,2,Success,2024-12-10,Random Forest
+25,Retired,Married,Primary,No,0.0,No,No,Telephone,1,Sep,800,1,-1,2,Success,2024-12-10,SVC
+25,Retired,Married,Primary,No,0.0,No,No,Telephone,1,Sep,800,1,-1,2,Success,2024-12-10,SVC
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,SVC
+56,Admin.,Married,Primary,Yes,0.0,No,No,Telephone,1,May,0,1,-1,0,Success,2024-12-10,SVC
+56,Admin.,Married,Primary,Yes,0.0,No,No,Telephone,1,May,600,1,-1,0,Success,2024-12-10,SVC
+56,Admin.,Married,Tertiary,No,0.0,No,No,Telephone,1,May,600,1,-1,0,Success,2024-12-10,SVC
+56,Admin.,Married,Tertiary,No,0.0,No,No,Telephone,1,May,600,1,-1,0,Success,2024-12-10,SVC
+56,Admin.,Married,Tertiary,No,0.0,No,No,Cellular,1,May,600,1,1,0,Success,2024-12-10,SVC
+24,Admin.,Married,Tertiary,No,0.0,No,No,Cellular,30,May,600,1,1,0,Success,2024-12-10,Random Forest
+24,Admin.,Married,Tertiary,No,0.0,No,No,Cellular,30,May,600,1,1,0,Success,2024-12-10,Random Forest
+24,Admin.,Married,Tertiary,No,0.0,No,No,Cellular,30,May,800,1,1,0,Success,2024-12-10,Random Forest
+24,Unknown,Single,Tertiary,No,0.0,No,No,Cellular,30,May,800,1,1,0,Success,2024-12-10,Random Forest
+24,Unknown,Single,Tertiary,No,0.0,No,No,Cellular,30,May,800,1,1,0,Success,2024-12-10,Random Forest
+24,Unknown,Single,Tertiary,No,897.0,No,No,Cellular,30,May,800,1,1,0,Success,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,3,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,3,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,3,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,3,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,3,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,3,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,No,2343.0,Yes,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,Yes,2343.0,Yes,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,Yes,2343.0,No,No,Unknown,4,May,1042,1,0,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Secondary,Yes,2343.0,No,No,Unknown,4,May,500,1,0,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Primary,Yes,2343.0,No,No,Unknown,4,May,500,1,0,0,Unknown,2024-12-10,Random Forest
+59,Admin.,Married,Primary,Yes,87.0,No,No,Unknown,4,May,500,1,0,0,Unknown,2024-12-10,Random Forest
+59,Retired,Married,Primary,Yes,87.0,No,No,Unknown,4,May,500,1,0,0,Unknown,2024-12-10,Random Forest
+59,Retired,Married,Primary,Yes,87.0,No,No,Unknown,4,May,500,1,0,0,Unknown,2024-12-10,Random Forest
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,Random Forest
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,SVC
+56,Admin.,Married,Secondary,No,45.0,No,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,SVC
+56,Admin.,Married,Secondary,No,45.0,No,No,Unknown,5,May,1042,1,-1,0,Unknown,2024-12-10,SVC
