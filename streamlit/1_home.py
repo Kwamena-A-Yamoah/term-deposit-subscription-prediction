@@ -1,56 +1,54 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title= "Bank Client Subscribtion App")
+# Page configuration
+st.set_page_config(page_title="Bank Client Subscription Prediction App")
 
-st.title("Bank Client Subscribtion Prediction")
+# Title and introduction
+st.title("Bank Client Subscription Prediction")
 st.markdown("""
-            This app leverages advanced data analytics and machine learning algorithms to predict the likelihood of client subscribtion to bank product (term deposit). 
-            By analyzing historical data, the app identifies patterns and key factors contributing to customer attrition.
+This app uses machine learning to predict the likelihood of a client subscribing to a bank's term deposit product.  
+By inputting relevant customer details, the app generates accurate predictions to support your decision-making.
 """)
 
-st.subheader("Key features")
+# Features
+st.subheader("Key Features")
 st.markdown("""
-            - __Predictions__ : View subscribtion of bank customers.
-            - __View Data__ : Access proprietary data
-            - __Dashboard__ : Explore interactive data visualization for insights.
-           """)
+- **Prediction**: Input customer details to predict subscription likelihood.
+""")
 
-
-st.subheader("Steps")
+# Steps for prediction
+st.subheader("How It Works")
 st.markdown("""
-            - __Upload Your Data__ : Upload your customer dataset, ensure it all includes relevant features.
-            - __Data Processing__ : The app cleans and processes the data to prepare it for modeling.
-            - __Prediction__ : The machine learning model predicts the probability of each customer leaving the organization.
-            - __Insights__ : Explore the insights generated to understand the drivers of churn and identify at-risk customers.
-            """)
+1. **Input Data**: Provide the required customer details (features).  
+2. **Get Prediction**: The app processes your input and predicts the likelihood of subscription.  
+""")
 
-st.subheader("Benefits of Predicting Client Subscriptions")
+# Benefits of the app
+st.subheader("Why Use This App?")
 st.markdown("""
-            - **Targeted Marketing**: Enables precise identification of potential subscribers, optimizing marketing efforts and costs.  
-            - **Improved Conversion Rates**: Focuses on customers most likely to subscribe, boosting campaign success rates.  
-            - **Efficient Resource Utilization**: Allocates time and resources effectively by prioritizing high-potential leads.  
-            - **Enhanced Decision-Making**: Provides actionable insights into customer behavior and preferences for strategic planning.  
-            - **Business Growth**: Strengthens customer relationships and maximizes ROI through data-driven marketing strategies.  
-            """)
+- **Precise Predictions**: Focus your efforts on customers most likely to subscribe.  
+- **Data-Driven Decision Making**: Enhance strategies with reliable insights.  
+- **Improved Efficiency**: Prioritize high-potential leads effectively.  
+""")
 
-st.subheader("About The Model")
+# About the model
+st.subheader("Model Information")
 st.markdown("""
-            Our app utilizes a robust machine learning model, fine-tuned for accuracy and interpretability.  
-            The model considers multiple factors, including customer demographics, engagement patterns, and previous campaign outcomes,  
-            providing a comprehensive prediction of subscription likelihood. While the model offers high accuracy,  
-            predictions should be interpreted within the context of your bank's unique marketing strategies and objectives.  
-            """)
+The app leverages a robust machine learning model trained on historical customer data. It considers multiple factors to provide accurate predictions.  
+While predictions are reliable, they should be used as part of a broader strategy and not as the sole basis for decisions.
+""")
 
-
+# Disclaimer
 st.subheader("Disclaimer")
-st.markdown("""Please note that while our predictions are highly accurate, they depend on the quality and relevance of the input data. 
-            We recommend using these insights in conjunction with other business strategies and not as the sole basis for critical decisions.
-            """)
+st.markdown("""
+This app is designed solely for making predictions about client subscriptions.  
+The accuracy of the predictions depends on the quality and completeness of the input data.  
+We recommend using these predictions as a supplementary tool alongside your own analysis and expertise, not as the sole basis for critical business decisions.
+""")
 
+# Contact information
 st.subheader("Contact Us")
 customer_support_email = "kay.yamoah10@gmail.com"
 st.markdown(f"""
-For any questions or concerns, please contact our customer support team at [this email address]({customer_support_email}).
+For inquiries or assistance, please reach out to our support team at [this email address]({customer_support_email}).
 """)
-# st.button("Repository on GitHub", help= "Visit the Github repository")
