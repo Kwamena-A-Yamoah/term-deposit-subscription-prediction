@@ -15,20 +15,27 @@ st.set_page_config(
 # Load Pipelines
 @st.cache_resource(show_spinner='Model loading')
 def load_rf_pipeline():
-    return joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\random_forest_model.pk1')
+    # Update path to be relative or use environment-specific configuration
+    model_path = os.path.join('streamlit', 'models', 'random_forest_model.pk1')
+    return joblib.load(model_path)
 
 
 @st.cache_resource(show_spinner='Model loading')
 def load_svc_pipeline():
-    return joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\svc_model.pkl')
+    model_path = os.path.join('streamlit', 'models', 'svc_model.pkl')
+    return joblib.load(model_path)
 
 
 # ===========================================================================================================
 # Load Thresholds
 @st.cache_resource(show_spinner='Threshold loading')
 def load_thresholds():
-    rf_threshold = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\rf_threshold.pkl')
-    svc_threshold = joblib.load(r"C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\svc_threshold.pkl")
+    rf_threshold_path = os.path.join('streamlit', 'models', 'rf_threshold.pkl')
+    svc_threshold_path = os.path.join('streamlit', 'models', 'svc_threshold.pkl')
+    
+    rf_threshold = joblib.load(rf_threshold_path)
+    svc_threshold = joblib.load(svc_threshold_path)
+    
     return rf_threshold, svc_threshold
 
 
@@ -38,15 +45,16 @@ def select_model():
     col1, col2 = st.columns(2)
     with col1:
         st.selectbox('Select a Model', options=['Random Forest', 'SVC'], key='selected_model')
-    with col2:
-        pass
-
+    
     if st.session_state['selected_model'] == 'Random Forest':
         pipeline = load_rf_pipeline()
     else:
         pipeline = load_svc_pipeline()
 
-    encoder = joblib.load(r'C:\Users\Pc\Desktop\Data analysis\Azubi Africa\term-deposit-subscription-prediction\streamlit\models\encoder.joblib')
+    # Update path for encoder
+    encoder_path = os.path.join('streamlit', 'models', 'encoder.joblib')
+    encoder = joblib.load(encoder_path)
+    
     return pipeline, encoder
 
 
@@ -72,14 +80,19 @@ def make_prediction(pipeline, encoder, threshold):
     df['Prediction time'] = datetime.date.today()
     df['Model used'] = st.session_state['selected_model']
     history_path = 'history_data/history.csv'
+    
+    # Append history, ensuring file exists
     df.to_csv(history_path, mode='a', header=not os.path.exists(history_path), index=False)
 
     # Make prediction
     probability = pipeline.predict_proba(df)[0]
     predicted_class = int(probability[1] >= threshold)
     prediction = encoder.inverse_transform([predicted_class])
+    
+    # Store results in session state
     st.session_state['predictions'] = prediction[0]
     st.session_state['probability'] = probability
+    
     return prediction[0], probability
 
 
