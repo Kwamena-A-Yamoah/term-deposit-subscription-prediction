@@ -2,3 +2,8 @@ age,job,marital,education,default,balance,housing,loan,contact,day,month,duratio
 0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,Yes,2024-12-10,Random Forest
 0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,Random Forest
 0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,SVC
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,Jan,0,0,-1,0,Success,2024-12-10,Random Forest
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,May,0,0,-1,0,Success,2024-12-10,Random Forest
+0,Admin.,Married,Primary,Yes,0.0,Yes,Yes,Telephone,1,May,0,0,-1,0,Success,2024-12-10,Random Forest
+0,Admin.,Married,Secondary,No,0.0,Yes,Yes,Telephone,1,May,0,0,-1,0,Success,2024-12-10,Random Forest
+0,Admin.,Married,Secondary,No,0.0,Yes,No,Unknown,1,May,0,2,2,0,Other,2024-12-10,Random Forest
